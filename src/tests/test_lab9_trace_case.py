@@ -6,6 +6,18 @@ import pytest
 pytestmark = pytest.mark.student
 
 
+@pytest.fixture(autouse=True)
+def _restore_shapes():
+    """investigate() registers the lab9 variants into lab8.shapes.SHAPES; undo it so Lab 8's
+    contract tests (exactly four shapes) still hold when everything runs in one process."""
+    from lab8.shapes import SHAPES
+
+    saved = dict(SHAPES)
+    yield
+    SHAPES.clear()
+    SHAPES.update(saved)
+
+
 def _grade(shape, claim, seed):
     from pydantic_evals.evaluators import EvaluatorContext
 

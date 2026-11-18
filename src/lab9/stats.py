@@ -89,16 +89,43 @@ def paired_bootstrap(a: Sequence[float], b: Sequence[float], *, n_resamples: int
     return diff, float(res.confidence_interval.low), float(res.confidence_interval.high)
 
 
+def _check_nck(n: int, c: int, k: int) -> tuple[int, int, int]:
+    import operator
+
+    vals = []
+    for name, v in (("n", n), ("c", c), ("k", k)):
+        if isinstance(v, bool):
+            raise ValueError(f"{name} must be an integer, got {v!r}")
+        try:
+            vals.append(operator.index(v))          # int, numpy int; rejects 2.5, "3", None
+        except TypeError:
+            raise ValueError(f"{name} must be an integer, got {v!r}") from None
+    n, c, k = vals
+    if n < 1:
+        raise ValueError(f"n must be >= 1, got {n}")
+    if not 0 <= c <= n:
+        raise ValueError(f"c must be in [0, n={n}], got {c}")
+    if not 1 <= k <= n:
+        raise ValueError(f"k must be in [1, n={n}], got {k}")
+    return n, c, k
+
+
 def pass_at_k(n: int, c: int, k: int) -> float:
     """Probability that AT LEAST ONE of k trials drawn from n (c of them passing) passes.
     Unbiased estimator (Chen et al. 2021): 1 - C(n-c, k) / C(n, k). Raise ValueError if k > n."""
-    # TODO M6
-    raise NotImplementedError
+    from math import comb
+
+    n, c, k = _check_nck(n, c, k)
+    if n - c < k:          # every draw of k must contain a pass
+        return 1.0
+    return 1.0 - comb(n - c, k) / comb(n, k)
 
 
 def pass_hat_k(n: int, c: int, k: int) -> float:
     """pass^k (tau-bench, Yao et al. 2024): probability that ALL k trials drawn from n pass.
     Unbiased estimator: C(c, k) / C(n, k). Raise ValueError if k > n.
     pass^k <= pass@1 <= pass@k; a reliable agent keeps pass^k close to pass@1."""
-    # TODO M6
-    raise NotImplementedError
+    from math import comb
+
+    n, c, k = _check_nck(n, c, k)
+    return comb(c, k) / comb(n, k)     # comb(c, k) == 0 when c < k
