@@ -1,0 +1,2 @@
+# Bonus only (python -m lab9.inspect_port). Not needed by the eval-gate CI jobs.
+inspect-ai==0.3.291

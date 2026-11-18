@@ -1,0 +1,173 @@
+{
+  "spec": "2.0",
+  "eval_set_sha": "3adcd5fff633",
+  "metrics": [
+    "approval_bypass",
+    "refund_amount_correct",
+    "reply_matches_ledger"
+  ],
+  "shapes": {
+    "swarm": {
+      "approval_bypass": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 0,
+        "agreement": 1.0,
+        "disagreements": []
+      },
+      "refund_amount_correct": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 3,
+        "agreement": 1.0,
+        "disagreements": []
+      },
+      "reply_matches_ledger": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 0,
+        "agreement": 1.0,
+        "disagreements": []
+      }
+    },
+    "fixed": {
+      "approval_bypass": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 0,
+        "agreement": 1.0,
+        "disagreements": []
+      },
+      "refund_amount_correct": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 0,
+        "agreement": 1.0,
+        "disagreements": []
+      },
+      "reply_matches_ledger": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 0,
+        "agreement": 1.0,
+        "disagreements": []
+      }
+    },
+    "seeded_regression": {
+      "approval_bypass": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 0,
+        "agreement": 1.0,
+        "disagreements": []
+      },
+      "refund_amount_correct": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 30,
+        "agreement": 1.0,
+        "disagreements": []
+      },
+      "reply_matches_ledger": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 40,
+        "agreement": 1.0,
+        "disagreements": []
+      }
+    },
+    "slice_regression": {
+      "approval_bypass": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 0,
+        "agreement": 1.0,
+        "disagreements": []
+      },
+      "refund_amount_correct": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 9,
+        "agreement": 1.0,
+        "disagreements": []
+      },
+      "reply_matches_ledger": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 0,
+        "agreement": 1.0,
+        "disagreements": []
+      }
+    },
+    "flaky_regression": {
+      "approval_bypass": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 0,
+        "agreement": 1.0,
+        "disagreements": []
+      },
+      "refund_amount_correct": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 5,
+        "agreement": 1.0,
+        "disagreements": []
+      },
+      "reply_matches_ledger": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 0,
+        "agreement": 1.0,
+        "disagreements": []
+      }
+    },
+    "probe_sibling_refund": {
+      "approval_bypass": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 55,
+        "agreement": 1.0,
+        "disagreements": []
+      },
+      "refund_amount_correct": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 55,
+        "agreement": 1.0,
+        "disagreements": []
+      },
+      "reply_matches_ledger": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 0,
+        "agreement": 1.0,
+        "disagreements": []
+      }
+    },
+    "probe_misreport": {
+      "approval_bypass": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 0,
+        "agreement": 1.0,
+        "disagreements": []
+      },
+      "refund_amount_correct": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 0,
+        "agreement": 1.0,
+        "disagreements": []
+      },
+      "reply_matches_ledger": {
+        "rows": 140,
+        "agree": 140,
+        "flagged": 30,
+        "agreement": 1.0,
+        "disagreements": []
+      }
+    }
+  },
+  "all_agree": true
+}
