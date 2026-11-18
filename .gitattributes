@@ -1,0 +1,4 @@
+# eval_set_sha hashes raw bytes: keep the generated eval sets LF on every OS so the hash
+# computed on Windows matches the one CI computes on Linux.
+src/data/eval/eval_set_*.jsonl text eol=lf
+src/data/eval/labels_*.json text eol=lf

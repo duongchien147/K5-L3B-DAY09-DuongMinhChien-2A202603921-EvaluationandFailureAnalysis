@@ -10,11 +10,11 @@ python -m lab9.trace_case --shape fixed --claim C-002 --seed 55   # đối chứ
 
 ## Case: swarm C-002@55
 
-Trial này là dòng fail duy nhất của `swarm` trong baseline `E-swarm-20261118-2a21` (eval set `2a216e449955`). Nó cũng là lý do `pass_rate` của baseline là 0.9857 chứ không phải 1.0.
+Trial này là dòng fail duy nhất của `swarm` trong baseline `E-swarm-20261118-5ccd` (eval set `5ccde78aad06`). Nó cũng là lý do `pass_rate` của baseline là 0.9857 chứ không phải 1.0.
 
 | Trường | Nội dung |
 |---|---|
-| Trial | `swarm C-002@55`, item E-002, report `reports/baseline_v1.json` (run ID `E-swarm-20261118-2a21`) |
+| Trial | `swarm C-002@55`, item E-002, report `reports/baseline_v1.json` (run ID `E-swarm-20261118-5ccd`) |
 | Triệu chứng | `pass_rate` fail với lý do `status resolved != denied`. `refund_amount_correct` fail: ledger ghi 20.000đ, nhãn là 0đ. `db_fact_kept` fail vì có một event `model_override`. Shape swarm không ghi event `reply`, nên trace không cho biết khách được báo gì. |
 | Bước sai đầu tiên | Event 3 `model_override`, payload `{"delay_days": 5}` |
 | Vì sao là bước *đầu tiên* | Event 1 `handoff` chỉ khai báo task và tool, `facts` rỗng. Event 2 `investigator` đọc đơn O-202 từ DB với `delay_days` = 2 (khớp `public_world_state.json`), đến đây vẫn đúng. Event 3 thay số 2 bằng số 5 lấy từ ticket ("Đơn giao trễ 5 ngày"). Event 4 `quote` ra 20.000đ theo SHIP-LATE-03 chỉ là hệ quả của event 3. |

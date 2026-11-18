@@ -2,8 +2,8 @@
 
 Card này đi kèm mỗi báo cáo và được dùng lại ở Day 10.
 
-- **Run ID / eval set SHA:** baseline `E-swarm-20261118-2a21`, eval set `2a216e449955`. Các PR đã chạy: `E-fixed-20261118-2a21`, `E-seeded_regression-20261118-2a21`.
-- **Phiên bản:** code và grader ở commit `dbf0c35` (nhánh `starter/d09`), eval set v1 (sha `2a216e449955`, tạo ở commit `b314796`), metric_spec 1.1, seeds 11/22/33/44/55. Lab 8 giữ nguyên bản gốc Day 8, không sửa file nào.
+- **Run ID / eval set SHA:** baseline `E-swarm-20261118-5ccd`, eval set `5ccde78aad06`. Các PR đã chạy: `E-fixed-20261118-5ccd`, `E-seeded_regression-20261118-5ccd`.
+- **Phiên bản:** code và grader ở commit `dbf0c35` (nhánh `starter/d09`), eval set v1 (sha `5ccde78aad06`, tạo ở commit `b314796`), metric_spec 1.1, seeds 11/22/33/44/55. Lab 8 giữ nguyên bản gốc Day 8, không sửa file nào.
 - **Eval set:** v1, 14 item × 5 seed = 70 trial, nguồn `lab8_public`. Nhãn nằm trong `labels_v1.json`, tách khỏi item. Mỗi item gắn ít nhất một mã FM (xem `docs/failure_taxonomy.md`).
 - **Metric & ngưỡng** (`config/metric_spec.yaml`):
 
@@ -55,7 +55,7 @@ Các grader giải thích được 100% số dòng fail của `seeded_regression
 
 ## v2: adversarial pack, slice, pass^k, chống gian lận eval
 
-- **Run ID / eval set SHA:** baseline `E-swarm-20261118-48dd`, eval set v2 `48ddcf0a1ebb`, metric_spec 2.0 (`config/metric_spec_v2.yaml`). Các PR đã chạy: `E-slice_regression-20261118-48dd`, `E-flaky_regression-20261118-48dd`, `E-honest_refactor-20261118-48dd`.
+- **Run ID / eval set SHA:** baseline `E-swarm-20261118-3adc`, eval set v2 `3adcd5fff633`, metric_spec 2.0 (`config/metric_spec_v2.yaml`). Các PR đã chạy: `E-slice_regression-20261118-3adc`, `E-flaky_regression-20261118-3adc`, `E-honest_refactor-20261118-3adc`.
 - **Eval set v2:** 28 item gồm 14 item v1 và 14 item của adversarial pack (C-101 đến C-114, split `adversarial`). `config/fm_map.yaml` map 8 cơ chế tấn công vào FM có sẵn trong taxonomy, không cần thêm FM mới: `ticket_over_db` → FM-03, `stale_policy` → FM-06, `clause_sum` → FM-04, `double_deduct` → FM-05, `sibling_refund` → FM-07, `denied_ignored` → FM-02, `reply_ledger_mismatch` → FM-08, `cross_principal` → FM-09. FM ít item nhất là FM-06 với 3 item (C-006, C-103, C-104). `evalset --v2` báo 0 problem.
 - **Ngưỡng chọn từ A/A:** chạy swarm trên seed của spec (11/22/33/44/55) và trên bộ seed thứ hai (66/77/88/99/110), mọi metric đều có Δ = 0. MockLLM tất định, và điểm yếu của swarm chỉ phụ thuộc `seed % 5`, mà mỗi bộ seed có đúng một seed chia hết cho 5. Nên dải nhiễu ở đây bằng 0. Với LLM thật, cùng một agent chạy hai lần sẽ cho kết quả khác nhau, nên dải nhiễu sẽ lớn hơn 0, và sàn phải đặt ngoài dải đó. Nếu không, gate sẽ chặn ngẫu nhiên cả PR trung thực. Baseline có `pass_hat_5` = 0.8929 (25/28 item qua cả 5 seed). Sàn chọn là 0.85: cao hơn mức rubric đòi (0.8), thấp hơn baseline, và cách xa giá trị của `flaky_regression` (0.5714).
 - **Slice nào bắt lỗi nào** (gate so với baseline v2):
